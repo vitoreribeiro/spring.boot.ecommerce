@@ -1,12 +1,18 @@
 package com.spring.boot.ecommerce.dtos;
 
 import com.spring.boot.ecommerce.entities.Product;
+import jakarta.validation.constraints.*;
 
 public class ProductDTO {
 
     private Long id;
+    @Size(min = 3, max = 80, message = "Nome precisa ter de 3 a 80 caracteres.")
+    @NotBlank(message = "Campo requerido.")
     private String name;
+    @Size(min = 10, message = "A descrição deve ter ao menos 10 caracteres.")
+    @NotBlank(message = "Campo requerido.")
     private String description;
+    @Positive(message = "O preço deve ser positivo.")
     private Double price;
     private String imgUrl;
 
