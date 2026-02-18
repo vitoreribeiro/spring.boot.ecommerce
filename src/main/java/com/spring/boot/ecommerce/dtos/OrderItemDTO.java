@@ -1,7 +1,9 @@
 package com.spring.boot.ecommerce.dtos;
 
 import com.spring.boot.ecommerce.entities.OrderItem;
+import lombok.Getter;
 
+@Getter
 public class OrderItemDTO {
 	
 	private Long productId;
@@ -29,28 +31,9 @@ public class OrderItemDTO {
 		imgUrl = entity.getProduct().getImgUrl();
 	}
 
-	public Long getProductId() {
-		return productId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public Double getPrice() {
-		return price;
-	}
-
-	public Integer getQuantity() {
-		return quantity;
-	}
-
-	public Double getSubTotal(){
+    public Double getSubTotal(){
 		return price * quantity;
 	}
-	
-	public String getImgUrl() {
-		return imgUrl;
-	}
+
 }
 

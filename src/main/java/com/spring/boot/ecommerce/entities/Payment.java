@@ -1,10 +1,14 @@
 package com.spring.boot.ecommerce.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Instant;
 import java.util.Objects;
 
+@Setter
+@Getter
 @Entity
 @Table(name = "tb_payment")
 public class Payment {
@@ -26,30 +30,6 @@ public class Payment {
     public Payment(Long id, Instant moment, Order order) {
         this.id = id;
         this.moment = moment;
-        this.order = order;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Instant getMoment() {
-        return moment;
-    }
-
-    public void setMoment(Instant moment) {
-        this.moment = moment;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
         this.order = order;
     }
 

@@ -1,24 +1,33 @@
 package com.spring.boot.ecommerce.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.*;
 
+@Getter
 @Entity
 @Table(name = "tb_user")
 public class User implements UserDetails {
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Setter
     private String name;
+    @Setter
     @Column(unique = true)
     private String email;
+    @Setter
     private String phone;
+    @Setter
     private LocalDate birthDate;
+    @Setter
     private String password;
 
     @OneToMany(mappedBy = "client")
@@ -43,66 +52,14 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
     @Override
     public String getUsername() {
         return email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
     }
 
     public void addRole(Role role) {
@@ -131,7 +88,4 @@ public class User implements UserDetails {
         return Objects.hashCode(id);
     }
 
-    public Set<Role> getRoles() {
-        return roles;
-    }
 }

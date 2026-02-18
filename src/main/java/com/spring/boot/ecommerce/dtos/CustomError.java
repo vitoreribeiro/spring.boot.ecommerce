@@ -1,7 +1,10 @@
 package com.spring.boot.ecommerce.dtos;
 
+import lombok.Getter;
+
 import java.time.Instant;
 
+@Getter
 public class CustomError {
 
     private Instant timestamp;
@@ -16,19 +19,4 @@ public class CustomError {
         this.path = path;
     }
 
-    public Instant getTimestamp() {
-        return timestamp;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public String getError() {
-        return error;
-    }
-
-    public String getPath() {
-        return path;
-    }
 }

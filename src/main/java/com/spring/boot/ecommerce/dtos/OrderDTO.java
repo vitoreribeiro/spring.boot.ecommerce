@@ -4,11 +4,13 @@ import com.spring.boot.ecommerce.entities.Order;
 import com.spring.boot.ecommerce.entities.OrderItem;
 import com.spring.boot.ecommerce.enums.OrderStatus;
 import jakarta.validation.constraints.NotEmpty;
+import lombok.Getter;
 
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class OrderDTO {
 
     private Long id;
@@ -41,30 +43,6 @@ public class OrderDTO {
             OrderItemDTO itemDTO = new OrderItemDTO(item);
             items.add(itemDTO);
         }
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Instant getMoment() {
-        return moment;
-    }
-
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public ClientDTO getClient() {
-        return client;
-    }
-
-    public PaymentDTO getPayment() {
-        return payment;
-    }
-
-    public List<OrderItemDTO> getItems() {
-        return items;
     }
 
     public Double getTotal() {

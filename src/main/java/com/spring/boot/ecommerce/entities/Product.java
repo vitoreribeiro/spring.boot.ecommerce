@@ -1,23 +1,31 @@
 package com.spring.boot.ecommerce.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+@Getter
 @Entity
 @Table(name = "tb_product")
 public class Product {
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Setter
     private String name;
+    @Setter
     @Column(columnDefinition = "TEXT")
     private String description;
+    @Setter
     private Double price;
+    @Setter
     private String imgUrl;
 
     @ManyToMany
@@ -40,54 +48,6 @@ public class Product {
         this.price = price;
         this.imgUrl = imgUrl;
         this.categories = categories;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
-
-    public Set<Category> getCategories() {
-        return categories;
-    }
-
-    public Set<OrderItem> getOrderItems() {
-        return orderItems;
     }
 
     public List<Order> getOrders() {

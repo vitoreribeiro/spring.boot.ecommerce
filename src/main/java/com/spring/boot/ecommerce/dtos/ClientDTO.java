@@ -1,7 +1,9 @@
 package com.spring.boot.ecommerce.dtos;
 
 import com.spring.boot.ecommerce.entities.User;
+import lombok.Getter;
 
+@Getter
 public class ClientDTO {
 	
 	private Long id;
@@ -18,14 +20,6 @@ public class ClientDTO {
 	public ClientDTO(User entity) {
 		id = entity.getId();
 		name = entity.getName();
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 }

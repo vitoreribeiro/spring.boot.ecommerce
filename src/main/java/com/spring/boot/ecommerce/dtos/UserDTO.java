@@ -1,17 +1,14 @@
 package com.spring.boot.ecommerce.dtos;
 
-import com.spring.boot.ecommerce.entities.Order;
-import com.spring.boot.ecommerce.entities.Role;
 import com.spring.boot.ecommerce.entities.User;
-import jakarta.persistence.*;
+import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
+@Getter
 public class UserDTO {
 
     private Long id;
@@ -32,27 +29,4 @@ public class UserDTO {
         }
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public LocalDate getBirthDate() {
-        return birthDate;
-    }
-
-    public List<String> getRoles() {
-        return roles;
-    }
 }

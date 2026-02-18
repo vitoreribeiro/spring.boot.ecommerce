@@ -1,7 +1,9 @@
 package com.spring.boot.ecommerce.dtos;
 
 import com.spring.boot.ecommerce.entities.Category;
+import lombok.Getter;
 
+@Getter
 public class CategoryDTO {
 
     private Long id;
@@ -21,11 +23,4 @@ public class CategoryDTO {
         name = entity.getName();
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
 }

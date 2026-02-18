@@ -3,9 +3,13 @@ package com.spring.boot.ecommerce.entities;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
+@Setter
+@Getter
 @Embeddable
 public class OrderItemPK {
 
@@ -23,22 +27,6 @@ public class OrderItemPK {
 
     public OrderItemPK(Order order, Product product) {
         this.order = order;
-        this.product = product;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
         this.product = product;
     }
 

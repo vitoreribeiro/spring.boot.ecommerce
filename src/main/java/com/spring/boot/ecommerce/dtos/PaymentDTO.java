@@ -1,9 +1,11 @@
 package com.spring.boot.ecommerce.dtos;
 
+import com.spring.boot.ecommerce.entities.Payment;
+import lombok.Getter;
+
 import java.time.Instant;
 
-import com.spring.boot.ecommerce.entities.Payment;
-
+@Getter
 public class PaymentDTO {
 
     private Long id;
@@ -21,14 +23,6 @@ public class PaymentDTO {
     public PaymentDTO(Payment entity) {
        id = entity.getId();
        moment = entity.getMoment();
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public Instant getMoment() {
-        return moment;
     }
 
 }

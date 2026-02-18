@@ -2,6 +2,8 @@ package com.spring.boot.ecommerce.entities;
 
 import com.spring.boot.ecommerce.enums.OrderStatus;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.Instant;
 import java.util.HashSet;
@@ -9,21 +11,27 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+@Getter
 @Entity
 @Table(name = "tb_order")
 public class Order {
 
+    @Setter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Setter
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant moment;
+    @Setter
     private OrderStatus status;
 
+    @Setter
     @ManyToOne
     @JoinColumn(name = "client_id")
     private User client;
 
+    @Setter
     @OneToOne(mappedBy = "order", cascade = CascadeType.ALL)
     private Payment payment;
 
@@ -40,50 +48,6 @@ public class Order {
         this.status = status;
         this.client = client;
         this.payment = payment;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Instant getMoment() {
-        return moment;
-    }
-
-    public void setMoment(Instant moment) {
-        this.moment = moment;
-    }
-
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
-
-    public User getClient() {
-        return client;
-    }
-
-    public void setClient(User client) {
-        this.client = client;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
-    }
-
-    public Set<OrderItem> getOrderItems() {
-        return orderItems;
     }
 
     public List<Product> getProducts() {
