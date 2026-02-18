@@ -2,6 +2,7 @@ package com.spring.boot.ecommerce.services;
 
 import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import com.spring.boot.ecommerce.dtos.ProductDTO;
+import com.spring.boot.ecommerce.dtos.ProductMinDTO;
 import com.spring.boot.ecommerce.entities.Product;
 import com.spring.boot.ecommerce.repositories.ProductRepository;
 import com.spring.boot.ecommerce.services.exceptions.DatabaseException;
@@ -31,9 +32,9 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAll(String name, Pageable pageable) {
+    public Page<ProductMinDTO> findAll(String name, Pageable pageable) {
         Page<Product> products = repository.searchByName(name, pageable);
-        return products.map(ProductDTO::new);
+        return products.map(ProductMinDTO::new);
     }
 
     @Transactional
