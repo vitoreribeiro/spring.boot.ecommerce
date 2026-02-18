@@ -1,8 +1,10 @@
 package com.spring.boot.ecommerce.services;
 
 import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
+import com.spring.boot.ecommerce.dtos.CategoryDTO;
 import com.spring.boot.ecommerce.dtos.ProductDTO;
 import com.spring.boot.ecommerce.dtos.ProductMinDTO;
+import com.spring.boot.ecommerce.entities.Category;
 import com.spring.boot.ecommerce.entities.Product;
 import com.spring.boot.ecommerce.repositories.ProductRepository;
 import com.spring.boot.ecommerce.services.exceptions.DatabaseException;
@@ -77,5 +79,10 @@ public class ProductService {
         product.setDescription(dto.getDescription());
         product.setPrice(dto.getPrice());
         product.setImgUrl(dto.getImgUrl());
+        for(CategoryDTO categoryDTO : dto.getCategories()){
+            Category cat = new Category();
+            cat.setId(categoryDTO.getId());
+            product.getCategories().add(cat);
+        }
     }
 }
