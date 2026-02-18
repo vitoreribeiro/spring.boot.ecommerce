@@ -3,6 +3,7 @@ package com.spring.boot.ecommerce.controllers.handlers;
 import com.spring.boot.ecommerce.dtos.CustomError;
 import com.spring.boot.ecommerce.dtos.ValidationError;
 import com.spring.boot.ecommerce.services.exceptions.DatabaseException;
+import com.spring.boot.ecommerce.services.exceptions.ForbiddenException;
 import com.spring.boot.ecommerce.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,13 @@ public class ControllerExceptionHandler {
     @ExceptionHandler(DatabaseException.class)
     public ResponseEntity<CustomError> resourceNotFound(DatabaseException e, HttpServletRequest request) {
         HttpStatus status = HttpStatus.CONFLICT;
+        CustomError err = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<CustomError> forbidden(ForbiddenException e, HttpServletRequest request) {
+        HttpStatus status = HttpStatus.FORBIDDEN;
         CustomError err = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }

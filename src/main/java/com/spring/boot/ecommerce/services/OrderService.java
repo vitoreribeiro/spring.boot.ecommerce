@@ -5,6 +5,7 @@ import com.spring.boot.ecommerce.dtos.OrderItemDTO;
 import com.spring.boot.ecommerce.entities.Order;
 import com.spring.boot.ecommerce.entities.OrderItem;
 import com.spring.boot.ecommerce.entities.Product;
+import com.spring.boot.ecommerce.entities.User;
 import com.spring.boot.ecommerce.enums.OrderStatus;
 import com.spring.boot.ecommerce.repositories.OrderItemRepository;
 import com.spring.boot.ecommerce.repositories.OrderRepository;
@@ -31,10 +32,14 @@ public class OrderService {
     @Autowired
     OrderItemRepository orderItemRepository;
 
+    @Autowired
+    AuthService authService;
+
     @Transactional(readOnly = true)
     public OrderDTO findById(Long id){
         Order order = repository.findById(id).orElseThrow(
                 () -> new ResourceNotFoundException("Pedido não encontrado."));
+        authService.validateSelfOrAdmin(order.getClient().getId());
         return new OrderDTO(order);
     }
     @Transactional
@@ -44,7 +49,8 @@ public class OrderService {
 
         order.setMoment(Instant.now());
         order.setStatus(OrderStatus.WAITING_PAYMENT);
-        order.setClient(userService.authenticated());
+        User user = userService.authenticated();
+        order.setClient(user);
 
         for(OrderItemDTO itemDTO : dto.getItems()){
             Product product = productRepository.getReferenceById(itemDTO.getProductId());
